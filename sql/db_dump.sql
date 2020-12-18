@@ -28,9 +28,10 @@ CREATE TABLE `sections` (
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `parent_id` int DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +40,7 @@ CREATE TABLE `sections` (
 
 LOCK TABLES `sections` WRITE;
 /*!40000 ALTER TABLE `sections` DISABLE KEYS */;
-INSERT INTO `sections` VALUES (20,'55ccde72-1e5b-4de4-a783-69d046d1a881','Section 1','Description 1',NULL,'2020-12-18 14:32:01'),(21,'55ccde72-1e5b-4de4-a783-69d046d1a881','Section 2','Description 2',NULL,'2020-12-18 14:32:11'),(22,'55ccde72-1e5b-4de4-a783-69d046d1a881','Subsection 1.1','Description 1.1',20,'2020-12-18 14:32:29'),(23,'55ccde72-1e5b-4de4-a783-69d046d1a881','Subsection 2.2','Description 2.2',21,'2020-12-18 14:32:53'),(24,'55ccde72-1e5b-4de4-a783-69d046d1a881','Subsection 1.1.1','Desrtiption 1.1.1',22,'2020-12-18 14:33:58');
+INSERT INTO `sections` VALUES (103,'55ccde72-1e5b-4de4-a783-69d046d1a881','Section 1','Description 1',NULL,'103','2020-12-18 20:27:05'),(104,'55ccde72-1e5b-4de4-a783-69d046d1a881','Section 2','Description 2',NULL,'104','2020-12-18 20:27:19'),(105,'55ccde72-1e5b-4de4-a783-69d046d1a881','Subsection 1 of Section 1','Description of Subsection 1',103,'103.105','2020-12-18 20:28:01'),(106,'55ccde72-1e5b-4de4-a783-69d046d1a881','Subsection 2 of Section 1','Description of Subsection 2',103,'103.106','2020-12-18 20:28:32'),(107,'55ccde72-1e5b-4de4-a783-69d046d1a881','Subsection 3','Description 3',105,'103.105.107','2020-12-18 20:29:39');
 /*!40000 ALTER TABLE `sections` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,4 +81,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-18 16:35:51
+-- Dump completed on 2020-12-18 22:30:43
