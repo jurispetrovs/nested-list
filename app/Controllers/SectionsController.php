@@ -31,6 +31,7 @@ class SectionsController
         if (!isset($_SESSION['auth'])) {
             header('Location: /');
         }
+
         $parentId = (string)$vars['id'];
         $userId = $_SESSION['auth']->id();
 
@@ -73,6 +74,7 @@ class SectionsController
         session_start();
 
         $data = $_POST;
+
         $userId = $_SESSION['auth']->id();
 
         if (!isset($data['parent_id'])) {
@@ -88,7 +90,9 @@ class SectionsController
     {
         $id = (string)$vars['id'];
 
-        (new DeleteSectionService())->execute($id);
+        $path = $_POST['path'];
+
+        (new DeleteSectionService())->execute($id, $path);
 
         header('Location: /');
     }

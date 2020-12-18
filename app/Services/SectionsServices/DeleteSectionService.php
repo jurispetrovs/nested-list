@@ -13,8 +13,8 @@ class DeleteSectionService
         $this->sectionRepository = new SectionRepository();
     }
 
-    public function execute(string $id)
+    public function execute(string $id, string $path)
     {
-        $this->sectionRepository->delete($id);
+        $this->sectionRepository->delete($path);
     }
 }

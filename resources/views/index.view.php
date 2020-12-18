@@ -34,19 +34,26 @@
                                     <?php echo $section->name(); ?>
                                 </div>
                                 <div class="flex justify-center mt-4">
-                                    <a href="/section/<?php echo $section->id(); ?>"
-                                       class="block h-8 w-full px-3 py-2 mx-1 mx-1 rounded text-center text-sm
-                                       bg-gray-200 font-medium leading-5 hover:bg-blue-600 md:mx-0 md:w-auto
-                                       hover:text-white">
-                                        Show
-                                    </a>
+                                    <form method="get" action="/section/<?php echo $section->id(); ?>">
+                                        <input type="hidden" name="path" value="<?php echo $section->id() ?>">
+                                        <button type="submit"
+                                                class="block h-8 w-full px-3 py-2 mx-1 mx-1 rounded text-center text-sm
+                                                bg-gray-200 font-medium leading-5 hover:bg-blue-600 md:mx-0 md:w-auto
+                                                hover:text-white">
+                                            Show
+                                        </button>
+                                    </form>
                                     <a href="/section/<?php echo $section->id(); ?>/edit"
                                        class="block h-8 w-full px-3 py-2 mx-1 rounded text-center text-sm bg-gray-200
                                        font-medium leading-5 hover:bg-blue-600 md:mx-2 md:w-auto hover:text-white">
                                         Edit
                                     </a>
+
                                     <form method="post" action="/section/<?php echo $section->id(); ?>">
                                         <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="path"
+                                               value="<?php echo $section->path(); ?>"
+                                        >
                                         <button type="submit" onclick="return confirm('Are you sure ?');"
                                                 class="block h-8 w-full px-3 py-2 mx-2 rounded text-center text-sm
                                                 bg-red-300 font-medium leading-5 hover:bg-red-600 md:mx-0 md:w-auto

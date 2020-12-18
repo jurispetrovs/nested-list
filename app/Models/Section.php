@@ -9,13 +9,15 @@ class Section
     private string $name;
     private string $description;
     private ?string $parentId;
+    private ?string $path;
 
     public function __construct(
         string $id,
         string $userId,
         string $name,
         string $description,
-        ?string $parentId
+        ?string $parentId,
+        ?string $path
     )
     {
         $this->id = $id;
@@ -23,6 +25,7 @@ class Section
         $this->name = $name;
         $this->description = $description;
         $this->parentId = $parentId;
+        $this->path = $path;
     }
 
     public function id(): string
@@ -50,6 +53,11 @@ class Section
         return $this->parentId;
     }
 
+    public function path(): ?string
+    {
+        return $this->path;
+    }
+
     public static function create(array $data): self
     {
         return new self(
@@ -57,7 +65,8 @@ class Section
             $data['user_id'],
             $data['name'],
             $data['description'],
-            $data['parent_id']
+            $data['parent_id'],
+            $data['path']
         );
     }
 }

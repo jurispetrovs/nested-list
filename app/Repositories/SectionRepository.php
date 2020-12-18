@@ -84,21 +84,59 @@ class SectionRepository
                 'user_id' => ':userId',
                 'name' => ':name',
                 'description' => ':description',
-                'parent_id' => ':parentId'
+                'parent_id' => ':parentId',
+                'path' => ':path'
             ])
             ->setParameters([
                 'userId' => $userId,
                 'name' => $data['name'],
                 'description' => $data['description'],
-                'parentId' => $data['parent_id']
+                'parentId' => $data['parent_id'],
+                'path' => $data['path']
             ])
             ->execute();
+
+        $id = $this->lastInsertId();
+        $this->updatePath($id);
+    }
+
+    public function updatePath(string $id)
+    {
+        $section = $this->getById($id);
+
+        if ($section->path() === null) {
+            $path = $id;
+        } else {
+            $path = $section->path() . '.' . $id;
+        }
+
+        $this->connection
+            ->query()
+            ->update('sections')
+            ->set('path', ':path')
+            ->setParameter('path', $path)
+            ->where('id = :id')
+            ->setParameter('id', $id)
+            ->execute();
+    }
+
+    public function lastInsertId(): string
+    {
+        $data = $this->connection
+            ->query()
+            ->select('max(id)')
+            ->from('sections')
+            ->execute()
+            ->fetchAssociative();
+
+        return $data['max(id)'];
     }
 
     public function update(string $id, array $data): void
     {
         $this->connection
-            ->query()->update('sections')
+            ->query()
+            ->update('sections')
             ->set('name', ':name')
             ->set('description', ':description')
             ->setParameters([
@@ -110,13 +148,13 @@ class SectionRepository
             ->execute();
     }
 
-    public function delete(string $id)
+    public function delete(string $path)
     {
         $this->connection
             ->query()
             ->delete('sections')
-            ->where('id = :id')
-            ->setParameter('id', $id)
+            ->where('path LIKE :path')
+            ->setParameter('path', $path . '%')
             ->execute();
     }
 }

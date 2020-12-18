@@ -23,6 +23,9 @@
                         <?php if(isset($_GET['parent_id'])): ?>
                             <input type="hidden" name="parent_id" value="<?php echo $_GET['parent_id']; ?>">
                         <?php endif; ?>
+                        <?php if(isset($_GET['path'])): ?>
+                            <input type="hidden" name="path" value="<?php echo $_GET['path']; ?>">
+                        <?php endif; ?>
                         <label for="name" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Name</label>
                         <input id="name" type="text" name="name" placeholder="Section 1"
                                class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none

@@ -15,6 +15,10 @@ class ImportSectionService
 
     public function execute(array $data, string $userId)
     {
+        if(!isset($data['path'])) {
+            $data['path'] = null;
+        }
+
         $this->sectionRepository->insert($data, $userId);
     }
 }
