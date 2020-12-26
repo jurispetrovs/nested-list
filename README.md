@@ -1,5 +1,10 @@
 # Product Storage
 
+Web application that allows authorized users to create their own tree structure from sections and subsections.
+User cannot see someone else's structural tree. Deleting a section deletes all subsections.
+
+![](NestedList.gif)
+
 ### Prerequisites
 
 1. PHP 7.4 or above
